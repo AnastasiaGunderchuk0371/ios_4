@@ -1,0 +1,46 @@
+import Foundation
+
+// Структура для хранения информации о человеке, включая дату рождения
+struct Person {
+    var firstName: String
+    var lastName: String
+    var fatherName: String
+    var birthDate: Date
+    var age: Int
+    var city: String
+}
+
+// Помощник для форматирования даты рождения
+let dateFormatter: DateFormatter = {
+    let formatter = DateFormatter()
+    formatter.dateStyle = .long
+    formatter.timeStyle = .none
+    formatter.locale = Locale(identifier: "ru_RU") // Локаль для корректного отображения на русском языке
+    return formatter
+}()
+
+// Функция для вывода информации о человеке
+func printPersonInfo(person: Person) {
+    let birthDateString = dateFormatter.string(from: person.birthDate)
+  
+    print("Информация о человеке:")
+    print("Имя: \(person.firstName)")
+    print("Фамилия: \(person.lastName)")
+    print("Отчество: \(person.fatherName)")
+    print("День рождения: \(birthDateString)")
+    print("Возраст: \(person.age)")
+    print("Город: \(person.city)")
+}
+
+// Создаем информацию о конкретном человеке
+let specificPerson = Person(
+    firstName: "Анастасия",
+    lastName: "Гундерчук",
+    fatherName: "Валерьевна",
+    birthDate: dateFormatter.date(from: "13 января 2002") ?? Date(), 
+    age: 22,
+    city: "Санкт-Петербyрг"
+)
+
+// Выводим информацию
+printPersonInfo(person: specificPerson)
